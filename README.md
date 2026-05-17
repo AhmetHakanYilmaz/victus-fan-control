@@ -1,3 +1,5 @@
+
+!! made by ai, do not know which computer is compatible !!
 # Victus Fan Control
 
 A GTK4/libadwaita desktop application for monitoring and manually controlling fan speeds on the **HP Victus gaming laptop** (and potentially other HP WMI-based laptops) running Ubuntu/Linux.
