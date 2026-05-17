@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# victus-fan-permissions
+# Grants the 'fancontrol' group write access to all hwmon PWM sysfs files.
+# This script is executed by a systemd one-shot service on every boot.
+set -euo pipefail
+
+GROUP="fancontrol"
+
+for hwmon_dir in /sys/class/hwmon/hwmon*; do
+    [ -d "$hwmon_dir" ] || continue
+    real="$(realpath "$hwmon_dir")"
+
+    for pwm_file in "$real"/pwm[0-9] "$real"/pwm[0-9]_enable; do
+        [ -e "$pwm_file" ] || continue
+        chown "root:${GROUP}" "$pwm_file" 2>/dev/null || true
+        chmod 664 "$pwm_file" 2>/dev/null || true
+    done
+
+    # HP-style target-RPM control (hp_wmi driver)
+    for target_file in "$real"/fan[0-9]_target; do
+        [ -e "$target_file" ] || continue
+        chown "root:${GROUP}" "$target_file" 2>/dev/null || true
+        chmod 664 "$target_file" 2>/dev/null || true
+    done
+done
+
+echo "victus-fan-permissions: hwmon PWM permissions applied."

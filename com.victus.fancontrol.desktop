@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Victus Fan Control
+GenericName=Fan Controller
+Comment=Monitor and control fan speeds on HP Victus
+Exec=/usr/local/bin/victus-fan-control
+Icon=com.victus.fancontrol
+Terminal=false
+Type=Application
+Categories=System;HardwareSettings;
+Keywords=fan;temperature;hwmon;cooling;
+StartupNotify=true
+StartupWMClass=com.victus.fancontrol

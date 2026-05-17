@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+"""
+Launcher wrapper installed to /usr/local/bin/victus-fan-control.
+Ensures the package directory is on sys.path when running from the
+installed location.
+"""
+import sys
+import os
+
+# When installed, source lives at /usr/local/lib/victus-fan-control/
+_install_dir = "/usr/local/lib/victus-fan-control"
+if os.path.isdir(_install_dir) and _install_dir not in sys.path:
+    sys.path.insert(0, _install_dir)
+
+from main import main  # noqa: E402
+
+sys.exit(main())

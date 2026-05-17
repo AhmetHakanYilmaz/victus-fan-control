@@ -1,0 +1,13 @@
+[Unit]
+Description=Set hwmon PWM permissions for Victus Fan Control
+Documentation=https://github.com/AhmetHakanYilmaz/victus-fan-control
+After=systemd-udev-settle.service
+Wants=systemd-udev-settle.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/victus-fan-permissions
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
